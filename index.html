@@ -1165,7 +1165,13 @@
         $('#violate-select').on('click', '.btn-info', function() {
             let result = jsonData.filter(x=> x.code == $(this).attr("code"));
             $.each(result, function(index, charge) {
-              var copysu = '/su ' + suspectid + ' ' + charge.code + ' ' + charge.name;
+               if(charge.jailtime == 0)
+               {
+                  var copysu = '/ticket ' + suspectid + ' ' + charge.fine + ' ' + charge.code + ' ' + charge.name;
+               } else
+               {
+                  var copysu = '/su ' + suspectid + ' ' + charge.code + ' ' + charge.name;
+               }
             var textarea = document.createElement('textarea');
             textarea.value = copysu;
             textarea.style.position = 'fixed';
